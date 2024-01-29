@@ -15,46 +15,44 @@
 // Усі елементи повинні мати випадковий колір фону. Використовуй готову функцію getRandomHexColor() для отримання випадкового кольору.
 // Для очищення колекції після натискання на кнопку Destroy створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи всі створені елементи.
 
-const input = document.querySelector('input[type="number"]');
-const createButton = document.querySelector('button[data-create]');
-const destroyButton = document.querySelector('button[data-destroy]');
-const boxes = document.getElementById('boxes');
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, '0')}`;
+}
 
-createButton.addEventListener('click', () => {
-  const amount = Number(input.value);
 
-  if (amount >= 1 && amount <= 100) {
-    createBoxes(amount);
-    input.value = '';
-  } else {
-    alert('Please enter a number between 1 and 100');
-  }
-});
-
-destroyButton.addEventListener('click', destroyBoxes);
+const input = document.querySelector("input");
+const createButton = document.querySelector("button[data-create]");
+const destroyButton = document.querySelector("button[data-destroy]");
+const boxesContainer = document.querySelector('#boxes');
 
 function createBoxes(amount) {
+  boxesContainer.innerHTML = "";
   let size = 30;
-
   for (let i = 0; i < amount; i++) {
-    const box = document.createElement('div');
-    box.style.width = `${size}px`;
-    box.style.height = `${size}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    boxes.appendChild(box);
-
+    const div = document.createElement('div');
+    div.style.width = `${size}px`;
+    div.style.height = `${size}px`;
+    div.style.backgroundColor = [getRandomHexColor()];
+    boxesContainer.append(div);
     size += 10;
   }
 }
 
 function destroyBoxes() {
-  boxes.innerHTML = '';
+  boxesContainer.innerHTML = "";
 }
 
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, 0)}`;
-}
 
+createButton.addEventListener("click", function () {
+  const amount = Number(input.value);
+
+  if (amount >= 1 && amount <= 100) {
+    createBoxes(amount);
+    input.value = "";
+  }
+});
+
+destroyButton.addEventListener("click", destroyBoxes);
 

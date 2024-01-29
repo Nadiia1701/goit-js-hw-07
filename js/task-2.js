@@ -39,21 +39,21 @@ const images = [
 
 
 const gallery = document.querySelector(".gallery");
+
+const div = document.createElement('div');
+
 images.forEach(image => {
   const li = document.createElement('li');
   const img = document.createElement('img');
-  
+
   img.classList.add("picture")
-  
+  div.classList.add("container")
+
   img.src = image.url;
   img.alt = image.alt;
-  
+
   li.append(img);
-  gallery.append(li);
+  div.appendChild(li);
 });
 
-// let html = '';
-// images.forEach(image => {
-//   html += `<li><img src="${image.url}" alt="${image.alt}"></li>`;
-// });
-// gallery.insertAdjacentHTML('beforeend', html);
+gallery.append(div);
