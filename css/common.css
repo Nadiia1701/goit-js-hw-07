@@ -11,7 +11,7 @@ body {
     background-color:bisque;
 }
 
-.container {
+.gallery {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

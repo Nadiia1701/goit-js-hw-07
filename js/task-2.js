@@ -40,20 +40,11 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-const div = document.createElement('div');
+let galleryHTML = "";
 
 images.forEach(image => {
-  const li = document.createElement('li');
-  const img = document.createElement('img');
-
-  img.classList.add("picture")
-  div.classList.add("container")
-
-  img.src = image.url;
-  img.alt = image.alt;
-
-  li.append(img);
-  div.appendChild(li);
+  galleryHTML += `
+  <li class="gallery-item"> <img class="picture" src="${image.url}" alt="${image.alt}" /> </li >`;
 });
 
-gallery.append(div);
+gallery.insertAdjacentHTML("beforeend", galleryHTML)
